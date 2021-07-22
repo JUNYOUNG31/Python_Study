@@ -34,6 +34,7 @@ def my_func(a,b):
     print(c)
 
 result = my_func(5,6)
+#=> none 이 반환된다.
 
 #5 가변 인자 리스트
 def my_avg(*args):
