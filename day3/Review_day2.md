@@ -1,4 +1,4 @@
-# Review
+# Review_day2
 
 ## sort() 와 sorted()  차이
 
