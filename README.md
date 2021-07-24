@@ -6,4 +6,4 @@
 * homework and workshop 
 * practice 
   * project review
-  * bae/<joon> level review 
+  * baekjoon level review 
