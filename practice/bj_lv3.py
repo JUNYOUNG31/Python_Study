@@ -60,7 +60,8 @@ N = int(input())
 for i in range(1, N+1):
     print(' '*(N-i)+'*'*i)
 
-# # x 보다 작은 수
-# a, b = map(int, input().split())
-# for A in range(1,a+1):
-#     map(int, input().split())
+# x 보다 작은 수
+a, b = map(int, input().split())
+for A in input().split():
+    if int(A) < b :
+        print(A,end=' ')
