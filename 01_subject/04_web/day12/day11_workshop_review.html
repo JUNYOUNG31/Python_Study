@@ -1,0 +1,58 @@
+<!-- 1.img tag -->
+<html>
+<body>
+  <h1>1.img tag</h1>
+	<p>	
+    <img src="../image/image.png" alt="ssafy">
+	</p>		
+</body>
+</html>
+
+
+<!-- 2. 파일 경로 -->
+<!-- (a) 절대 경로 -->
+<!-- (b) 상대 경로 -->
+<!-- 절대 경로 -->
+<!-- 경로가 일치하지 않을때 이미지가 안나올수도 있음. -->
+
+<!-- 상대경로 -->
+<!-- 현재 내가 있는 위치를 기준으로 경로를 탐색 -->
+
+
+<!--3. Hyper Link-->
+<html>
+<body>
+  <h1>3. Hyper Link</h1>
+	<p>
+    <a href="https://www.ssafy.com"><img src="https://i.ytimg.com/vi/JJlZGVueots/maxresdefault.jpg" alt="ssafy"></a>
+	</p>		
+</body>
+</html>
+
+
+
+4. 선택자-1-첫번째 단락이 변화
+<html>
+  <head>
+    <!-- 스타일은 헤드부분에 작성한다. -->
+    <style>
+      /* 자식들 중에서 2번째가 h2 라면*/
+      #ssafy > h2:nth-child(2) {
+        color: red;
+      }
+      /* 해당하는 p에서 2번쨰 */
+      #ssafy > p:nth-of-type(2) {
+        color: blue;
+      }
+    </style> 
+  </head>
+<body>
+  <div id="ssafy">
+    <h2>어떻게 선택 될까?</h2>
+    <h2>첫번째 단락</h2>
+    <p>두번째 단락</p>
+    <p>세번째 단락</p>
+    <p>네번째 단락</p>
+  </div>   
+</body>
+</html>
