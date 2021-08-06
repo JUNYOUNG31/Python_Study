@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @media only print {
+      * {color: black;}
+    }
+    @media (min-width: 700px) {
+      h2 {color: red;}      
+    }
+    @media (width: 600px) {
+      h2 {color: blue;}      
+    }
+    @media (max-width: 500px) {
+      h2 {color: green;}
+    }
+    @media (orientation: landscape) {
+      p.orientation::after {content: '가로입니다.';}
+    }
+    @media (orientation: portrait) {
+      p.orientation::after {content: '세로입니다.';}
+    }
+    @media (min-width: 500px) {
+      .raindow {color: red;}      
+    }
+    @media (min-width: 550px) {
+      .raindow {color: orange;}      
+    }
+    @media (min-width: 600px) {
+      .raindow {color: yellow;}      
+    }
+    @media (min-width: 650px) {
+      .raindow {color: green;}      
+    }
+    @media (min-width: 700px) {
+      .raindow {color: blue;}      
+    }
+    @media (min-width: 750px) {
+      .raindow {color: navy;}      
+    }
+    @media (min-width: 800px) {
+      .raindow {color: purple;}      
+    }   
+  </style>
+</head>
+<body>
+  <h1>Media Query</h1>
+  <h2>가로가 700px 보다 크면 RED, 500px 이면 BLUE, 600px 보다 작으면 GREEN</h2>
+  <p class="orientation">지금 화면 방향은?</p>
+  <h3 class="raindow">화면 가로길이에 따라 색이 변하는 모습</h3>
+</body>
+</html>
