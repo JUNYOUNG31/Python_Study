@@ -28,7 +28,7 @@
   def BruteForce(p, t):
       i = 0
       j = 0   					
-      while j < M and i < N:
+      while i < N and j < M:
           if t[i] != p[j]:		
               i = i-j				# 검색위치 쉬프트
               j = -1
