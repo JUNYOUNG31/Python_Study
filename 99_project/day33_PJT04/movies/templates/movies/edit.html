@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Movie</h1>
+<form action="{% url 'movies:update' movie.pk %}" method="POST">
+  {% csrf_token %}
+  <div>
+    <label for="title">제목:</label>
+    <input id="title" type="text" name="title" value="{{ movie.title }}">
+  </div>
+
+  <div>
+    <label for="overview">줄거리:</label>
+    <textarea name="overview" id="overview" cols="30" rows="10">{{ movie.overview }}</textarea>
+  </div>
+
+  <div>
+    <label for="poster_path">포스터 경로:</label>
+    <input name="poster_path" id="poster_path" type="text" value="{{ movie.poster_path }}">
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-primary">수정</button>
+  </div>
+</form>
+
+{% endblock content %}
+
+

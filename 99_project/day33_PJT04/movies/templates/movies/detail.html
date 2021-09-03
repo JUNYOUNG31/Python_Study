@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ movie.title }}</h3>
+<p>{{ movie.overview }}</p>
+<p>{{ movie.poster_path }}</p>
+<p>{{ movie.created_at }}</p>
+<p>{{ movie.updated_at }}</p>
+<hr>
+<div class="d-inline">
+  <a href="{% url 'movies:edit' movie.pk %}" style="text-decoration:none">
+    <button type="button" class="btn btn-primary btn-sm">수정</button>
+  </a>
+</div>
+<form class="d-inline ms-2" action="{% url 'movies:delete' movie.pk %}" method="POST">
+  {% csrf_token %}
+  <button type="button" class="btn btn-warning btn-sm">삭제</button>
+</form>
+{% endblock content %}
