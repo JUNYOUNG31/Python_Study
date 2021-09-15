@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>DETAIL</h1>
+  <hr>
+  <h3>제목: {{ movie.title }}</h3>
+  <p>줄거리: {{ movie.overview }}</p>
+  <p>포스터 경로: {{ movie.poster_path }}</p>
+  <a href="{% url 'movies:update' movie.pk %}">
+    <button class='btn btn-primary'>EDIT</button>
+  </a>
+  <form action="{% url 'movies:delete' movie.pk %}" method='POST'>
+    {% csrf_token %}
+    <button class='btn btn-danger'>DELETE</button>
+  </form>
+{% endblock content %}
