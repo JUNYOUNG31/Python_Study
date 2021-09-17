@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>INDEX</h1>
+{% for review in reviews %}  
+  <p>{{ review.pk }} 번글 :
+   <a href="{% url 'community:detail' review.pk %}"> {{ review.movie_title }}</a>
+  </p>
+  
+  
+
+{% endfor %}
+
+
+{% endblock content %}

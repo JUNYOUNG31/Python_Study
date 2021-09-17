@@ -308,8 +308,16 @@ TEMPLATES = [
 * 2가지 방법
 1. The raw way
 	* is_authenticated 속성
-2. The login_required 
+2. The login_required decorator
+```
 
+```
+1.is_authenticated 속성
+* User model의 속성 중 하나
+* 모든 User 인스턴스에 대해 항상 True인 읽기 전용 속성(AnonymousUser는 항상 False)
+* 사용자가 인증 되었는지 여부를 알 수 있는 방법
+* 일반적으로 request.user에서 이 속성을 사용하여 미들웨어를 통과 했는지 확인
+* 권한과는 관련이 없으며, 사용자가 활성화 상태이거나 유효한 세션을 가지고 있는지도 확인하지 않음
 ```
 
 
