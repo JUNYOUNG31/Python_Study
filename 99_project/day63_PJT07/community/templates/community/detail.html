@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% comment %} 제목 {% endcomment %}
+<h2>{{ review.movie_title }} : {{ review.title }}</h2>
+{% comment %} 별점 {% endcomment %}
+<p>평점 : {{ review.get_rank_display }}</p>
+<hr>
+{% comment %} 내용 {% endcomment %}
+<p>content : {{ review.content|linebreaksbr }}</p>
+
+{% if request.user == review.user %}
+<div class="d-flex justify-content-end">
+  <form action="{% url 'community:update_review' review.pk %}">
+    <button class="mx-3 btn btn-warning btn-sm fw-bold">수정</button>
+  </form>
+  <form action="{% url 'community:delete_review' review.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger btn-sm fw-bold">삭제</button>
+  </form>
+</div>
+{% endif %}
+<hr>
+
+{% comment %} 좋아요 버튼 {% endcomment %}
+<form action="{% url 'community:like_review' review.pk %}" method="POST">
+  {% csrf_token %}
+  {% if request.user in review.like_users.all %}
+    <button class="btn btn-link btn-sm"><i class="fas fa-heart"></i></button>
+  {% else %}
+    <button class="btn btn-link btn-sm"><i class="far fa-heart"></i></button>
+  {% endif %}
+</form>
+<p><i class="fas fa-heart text-danger"></i> {{ review.like_users.all|length }}</p>
+<hr>
+{% comment %} 댓글 목록/작성 {% endcomment %}
+{% include 'community/_comment_list.html' %}
+{% include 'community/_comment_form.html' %}
+
+{% endblock content %}

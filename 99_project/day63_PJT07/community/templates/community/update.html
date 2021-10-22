@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'community:update_review' review.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="mx-3 btn btn-warning btn-sm fw-bold">글수정</button>
+</form>
+{% endblock content %}

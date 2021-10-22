@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="d-flex mt-5">
+    <h1>{{ profile.username }}</h1>
+    {% if request.user.is_authenticated and request.user != profile %}
+      <form action="{% url 'accounts:follow' profile.username %}" method="POST">
+        {% csrf_token %}
+        {% if is_following %}
+          <button class="mx-3 btn btn-primary btn-sm">UNFOLLOW</button>
+        {% else %}
+          <button class="mx-3 btn btn-primary btn-sm">FOLLOW</button>
+        {% endif %}
+      </form>
+    {% endif %}
+  </div>
+  <p class="fw-bold">Followers: {{ profile.followers.all|length }}</p>
+  <p class="fw-bold">Followings: {{ profile.followings.all|length }}</p>
+
+{% endblock content %}
