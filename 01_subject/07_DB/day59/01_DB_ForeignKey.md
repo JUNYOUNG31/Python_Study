@@ -262,3 +262,42 @@ def comments_delete(request, article_pk, comment_pk):
 {% endfor %}
 ```
 
+
+
+
+
+## Custom User model
+
+### User 모델 대체하기
+
+```
+* 일부 프로젝트에서는 Django 내장 User 모델이 제공하는 인증 요구사항이 적절하지 않을 수 있음
+* Django는 User를 참조하는데 사용하는 AUTH_USER_MODEL 값을 제공하여, default user model을 재정의 할 수 있도록 함
+* Django는 새 프로젝트를 시작하는 경우 기본 사용자 모델이 충분하더라도, 커스텀 유저 모델을 설정하는 것을 강력하게 권장
+```
+
+
+
+### AUTH_USER_MODEL
+
+```
+* User를 나타내는데 사용하는 모델
+* 프로젝트가 진행되는 동안 변경할 수 없음
+* 프로젝트 시작 시 설정, 참조하는 모델을 첫번째 마이그래이션에서 사용할수 있어야함
+* 기본값은 'auth.User'
+```
+
+
+
+### Custom User 모델 정의하기
+
+```python
+* 관리자 권한과 함께 완전한 기능을 갖춘 User 모델을 구현하는 기본클래스인 AbstractUser를 상속받아 새로운 User 모델 작성
+# accounts/models.py
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
+```
+
