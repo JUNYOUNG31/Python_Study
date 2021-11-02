@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% with  followings=person.followings.all followers=person.followers.all  %}
+    <h1>{{ person.username }}의 프로필 페이지</h1>
+      <div>
+        <div>팔로잉 수 : {{ followings|length }}</div>
+      </div>
+      <p>
+          팔로워 수 :  
+          <span id="follow-count-{{ person.pk }}">
+          {{ person.followers.all|length }}
+          </span>      
+      </p>  
+      {% if user != person %}
+        <div>        
+          <form class="follow-form" data-user-id="{{ person.pk }}">
+            {% csrf_token %}
+            {% if user in followers %}
+               <button id="follow-{{ person.pk }}" class="btn-danger">unfollow</button>
+            {% else %}
+              <button id="follow-{{ person.pk }}"  class="btn-primary">following</button>
+            {% endif %}
+          </form>
+        </div>              
+      {% endif %}
+    {% endwith %}
+  <hr>  
+  <a href="{% url 'articles:index' %}">[back]</a>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const forms = document.querySelectorAll('.follow-form')  
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    forms.forEach(form => {
+      form.addEventListener('submit', function (event){
+        event.preventDefault()
+        const userName = event.target.dataset.userId
+        console.log(event)
+        axios({
+          method: 'post',
+          url: `http://127.0.0.1:8000/accounts/${userName}/follow/`,
+          headers: {
+            'X-CSRFToken': csrftoken
+          }
+        })
+          .then(response => {
+            console.log(response.data)
+            const following = response.data.following
+            const followingCount = response.data.followingCount
+            const followBtn = document.querySelector(`#follow-${userName}`)
+            const followCountNum = document.querySelector(`#follow-count-${userName}`)
+
+            if (following) {
+              followBtn.innerText = 'unfollow'
+              followBtn.setAttribute('class', 'btn-danger')
+            } else {
+              followBtn.innerText = 'following'
+              followBtn.setAttribute('class', 'btn-primary')
+            }           
+            followCountNum.innerText = followingCount            
+          })
+              
+      })
+    })
+  </script>
+{% endblock content %}
