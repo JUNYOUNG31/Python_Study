@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="d-flex justify-content-center">Movies</h1>
+  <div class='movielist'>
+    <div class="row row-cols-2">
+      {% for movie in movies %}
+      <div id="movie"> 
+      <div class="col">   
+        <div class="card">
+          <img src="{{movie.poster_path}}" class="card-img-top" alt="{{movie.title}}" width="150">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <hr>
+            {% for genre in movie.genres.all %} 
+            <span class="card-title">{{ genre.name }}</span>
+            {% endfor %}
+            <hr>
+            <p class="card-text" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ movie.overview }}</p>
+            <a href="{% url 'movies:detail' movie.pk %}">[DETAIL]</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  let pageNum = 2
+  document.addEventListener('scroll', (event) => {
+    // console.log(event)
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement
+    // console.log(scrollHeight, scrollTop, clientHeight)    
+    if (scrollHeight - Math.round(scrollTop) === clientHeight) {
+      axios({
+      method: 'get',
+      url: `/movies/?page=${pageNum}`,
+      headers: {'x-requested-with': 'XMLHttpRequest'}
+    })
+      .then((response) => {
+        const movies = response.data       
+        // console.log(movies)
+        movies.forEach((movie) => {
+            const movieList = document.querySelector('.row-cols-2')
+            const movieDiv = document.createElement('div')
+        // console.log(movie)        
+        const m = "{{ genre_data|escapejs }}"        
+        const genre_pk = JSON.parse(m)
+        const genrenames = movie.fields.genres.reduce((pre,el) => {      
+          const gname = genre_pk.filter(e=>e.pk==el)[0].fields.name
+          return pre + `<span class="card-title">${ gname } </span>`
+        },'')        
+        // console.log(movie)
+        const movieHTML = 
+         `
+          <div class="col">   
+            <div class="card">
+              <img src="${movie.fields.poster_path}" class="card-img-top" alt="${movie.fields.title}" width="150">
+              <div class="card-body">
+                <h5 class="card-title">${ movie.fields.title }</h5>
+                <hr>                
+                ${genrenames}
+                <hr>
+                <p class="card-text" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${ movie.fields.overview }</p>
+                <a href="${movie.pk}/">[DETAIL]</a>
+              </div>
+            </div>
+          </div>
+          `
+          // console.log(movieHTML)
+          movieDiv.innerHTML = movieHTML
+          // console.log(movieDiv)
+          movieList.appendChild(movieDiv)
+          // console.log(movieHTML)
+        })    
+        pageNum += 1
+      })
+    }
+    // console.log(clientHeight)
+    // console.log(scrollHeight - Math.round(scrollTop))
+    // console.log('----------------------------------')
+  })    
+</script>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}  
+  
+  <h1>Movies</h1>
+  <div class='movielist'>
+    {% for movie in movies %}
+    <div id="movie">
+      <h2>{{ movie.title }}</h2>
+      <img src="{{movie.poster_path}}" alt="{{movie.title}}">
+      <p>{{ movie.overview }}</p>      
+      <a href="{% url 'movies:detail' movie.pk %}">[DETAIL]</a>
+      <hr>
+    </div>
+    {% endfor %}
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let pageNum = 2
+    document.addEventListener('scroll', (event) => {
+      // console.log(event)
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement
+      // console.log(scrollHeight, scrollTop, clientHeight)
+      if (scrollHeight - Math.round(scrollTop) === clientHeight+1) {
+        axios({
+        method: 'get',
+        url: `/movies/?page=${pageNum}`,
+        headers: {'x-requested-with': 'XMLHttpRequest'}
+      })
+        .then((response) => {
+          const movies = response.data       
+          // console.log(movies)
+          movies.forEach((movie) => {
+              const movieList = document.querySelector('.movielist')
+              const movieDiv = document.createElement('div')
+            console.log(movie)
+            const movieHTML = 
+            `
+            <h2>${ movie.fields.title }</h2>
+            <img src="${movie.fields.poster_path}" alt="${movie.fields.title}">
+            <p>${ movie.fields.overview }</p>
+            <a href="movies/${movie.pk}/">[DETAIL]</a>
+            <hr>
+            `
+            // console.log(movieHTML)
+            movieDiv.innerHTML = movieHTML
+            // console.log(movieDiv)
+            movieList.appendChild(movieDiv)
+            // console.log(movieHTML)
+          })    
+          pageNum += 1
+        })
+      }
+      // console.log(clientHeight)
+      // console.log(scrollHeight - Math.round(scrollTop))
+      // console.log('----------------------------------')
+    })    
+  </script>
+
+{% endblock %}

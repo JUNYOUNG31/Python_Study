@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>[DETAIL]</h1>
+<hr>
+  <p>Title: {{ movie.title }}</p>
+  <hr>
+  <img src="{{ movie.poster_path }}" alt="movie.title">  
+  <p>Release: {{ movie.release_date }}</p>
+  <hr>
+  <p>Genres:
+    {% for genre in movie.genres.all %}
+      <span class="card-title">{{ genre.name }}</span>
+    {% endfor %}
+  </p>
+  
+  <hr>
+  <p>Popular: {{ movie.popularity }}</p>
+  <hr>
+  <p>All_vote : {{ movie.vote_count }}</p>
+  <hr>
+  <p>Age_vote: {{ movie.vote_average }}</p>
+  <hr>
+  <p>Overview</p>
+  <p>{{ movie.overview }}</p>  
+  <hr>
+<a href="{% url 'movies:index' %}">[BACK]</a>
+{% endblock %}
