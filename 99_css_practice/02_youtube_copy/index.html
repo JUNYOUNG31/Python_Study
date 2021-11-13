@@ -6,11 +6,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/fd5df738f2.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
+  <script src="https://kit.fontawesome.com/fd5df738f2.js" crossorigin="anonymous"></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
-  
+  <!-- header -->
+  <header>
+    <div class="logo">
+      <i class="fab fa-youtube"></i>
+      <span class="title">Youtube</span>
+    </div>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-ellipsis-v"></i>
+    </div>    
+  </header>
+  <!-- video player -->
+  <section class="player">
+    <video controls src="video/youtube-icon.mp4"></video>
+  </section>
+
+
+  <div class="infoAndUpNext">
+    <section class="info">
+      <!-- metadata -->
+      <div class="metadata">
+        <ul class="hashtags">
+          <li>#DreamCoding</li>
+          <li>#DreamCoder</li>
+          <li>#Juns</li>
+        </ul>
+        <div class="titleAndButton clicked">
+          <span class="title clamp"
+          >YouTube 모바일 웹사이트 따라 만들기| 프론트엔드 개발자 입문편: HTML, CSS, JavaScript를 사용해서 youtube 화면을 copy 해서 css 를 적용하는 연습 3줄로 만들어서 일단 실험을 해본다</span>
+          <button class="moreBtn">
+            <i class="fas fa-caret-down"></i>
+          </button>
+        </div>      
+        <span class="views">1M views 1 month ago</span>      
+      </div>
+      <!-- actions -->
+      <ul class="actions">
+        <li><button><i class="active fas fa-thumbs-up"></i><span>1K</span></button></li>
+        <li><button><i class="fas fa-thumbs-down"></i><span>0</span></button></li>
+        <li><button><i class="fas fa-share"></i><span>Share</span></button></li>
+        <li><button><i class="fas fa-plus"></i><span>Save</span></button></li>
+        <li><button><i class="fab fa-font-awesome-flag"></i><span>Report</span></button></li>
+      </ul>
+      <!-- chennal description -->
+      <div class="channel">
+        <div class="metadata">
+          <img src="image/profile.jpg" alt="">
+          <div class="info">
+            <span class="name">드림코딩 by 준영</span>
+            <span class="subscribers">1K subscribers</span>
+          </div>
+        </div>
+        <button class="subscribe">subscribe</button>
+      </div>
+    </section>
+    <section class="UpNext">
+      <span class="title">Up next</span>
+      <ul>
+        <li class="item">
+          <div class="img"><img src="image/1.jfif" alt=""></div>
+          <div class="info">
+            <span class="title">1번째 동영상</span>
+            <span class="channel">드림코딩 by 준영</span>
+            <span class="views">12K views</span>
+          </div>
+          <button class="moreBtn"><i class="fas fa-ellipsis-v"></i></button>
+        </li>
+        <li class="item">
+          <div class="img"><img src="image/2.jfif" alt=""></div>
+          <div class="info">
+            <span class="title">2번째 동영상</span>
+            <span class="channel">드림코딩 by 준영</span>
+            <span class="views">34K views</span>
+          </div>
+          <button class="moreBtn"><i class="fas fa-ellipsis-v"></i></button>
+        </li>
+        <li class="item">
+          <div class="img"><img src="image/3.jfif" alt=""></div>
+          <div class="info">
+            <span class="title">3번째 동영상</span>
+            <span class="channel">드림코딩 by 준영</span>
+            <span class="views">56K views</span>
+          </div>
+          <button class="moreBtn"><i class="fas fa-ellipsis-v"></i></button>
+        </li>
+      </ul>
+    </section>
+  </div>
+<!-- video info -->
+
 </body>
 </html>
