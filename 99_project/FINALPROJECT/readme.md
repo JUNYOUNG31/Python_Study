@@ -17,3 +17,18 @@ logout 구현
 
 
 
+## day2
+
+```
+movies data 가져오기
+model에 맞게 json 파일 생성하기
+```
+
+
+
+## day3
+
+```
+리뷰작성 만들기
+```
+
